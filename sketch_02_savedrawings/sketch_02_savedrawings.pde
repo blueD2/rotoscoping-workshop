@@ -13,7 +13,7 @@ int currentFrame = 0;
 boolean showVideo = true;
 
 color brushColor = 0;
-int brushWeight = 4;
+int brushWeight = 10;
 
 PGraphics d;  // Drawing layer
 
@@ -60,6 +60,7 @@ void keyPressed() {
       currentFrame--;
       if (currentFrame < 0) {
         currentFrame = totalFrames - 1;
+     
       }
       loadFrame();
       loadDrawing();
@@ -71,6 +72,8 @@ void keyPressed() {
       }
       loadFrame();
       loadDrawing();
+    } else if (keyCode == SHIFT) {
+      noFill(); stroke(0,255,0); ellipse(mouseX,mouseY,50,50); eraseFunction();
     }
   }
 }
@@ -115,4 +118,22 @@ boolean overSelector() {
   } else {
     return false;
   }
+}
+
+void eraseFunction() {
+  log(1);
+  color c = color(0,0);
+  d.beginDraw();
+  d.loadPixels();
+  for (int x=0; x<d.width; x++) {
+    for (int y=0; y<d.height; y++ ) {
+      float distance = dist(x,y,mouseX,mouseY);
+      if (distance <= 25) {
+        int loc = x + y*d.width;
+        d.pixels[loc] = c;
+      }
+    }
+  }
+  d.updatePixels();
+  d.endDraw();
 }
