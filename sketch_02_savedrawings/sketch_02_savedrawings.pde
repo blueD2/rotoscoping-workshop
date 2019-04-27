@@ -11,6 +11,7 @@ PImage drawing;
 
 int currentFrame = 0;
 boolean showVideo = true;
+boolean showColors = true;
 
 color brushColor = 0;
 int brushWeight = 10;
@@ -38,13 +39,17 @@ void draw() {
   }
   d.endDraw();
   image(d, 0, 0, width, height);
-  
-  image(selector, sx, sy);
+  if (showColors) {
+    image(selector, sx, sy);
+  }
 }
 
 void keyPressed() {
   if (key == ' ' ) {
     showVideo = !showVideo;
+  }
+  if (key == 'c') {
+    showColors = !showColors;
   }
   if (key == 'b') { brushColor = color(0, 0, 0);  }
   if (key == 'o') { brushColor = color(218, 163, 76);  }
@@ -112,6 +117,9 @@ void mousePressed() {
 }
 
 boolean overSelector() {
+  if (!showColors) {
+    return false;
+  }
   if (mouseX > sx && mouseX < sx+selector.width && 
       mouseY > sy && mouseY < sy+selector.height) {
     return true;
