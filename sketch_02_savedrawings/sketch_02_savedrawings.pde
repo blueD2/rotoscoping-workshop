@@ -2,8 +2,8 @@ PImage selector;
 int sx = 0;
 int sy = 0;
 
-String videoPrefix = "cube-12fps-";
-int totalFrames = 33;
+String videoPrefix = "handPlant";
+int totalFrames = 16;
 PImage videoFrame;
 
 String drawingPrefix = "animation-";
@@ -18,7 +18,7 @@ int brushWeight = 4;
 PGraphics d;  // Drawing layer
 
 void setup() {
-  size(1940, 1080);
+  size(720, 480);
   selector = loadImage("palatte.png");
   d = createGraphics(width, height);
   loadFrame();
@@ -84,7 +84,7 @@ void saveAnimationFrame() {
 }
 
 void loadFrame() {
-  String filename = videoPrefix + nf(currentFrame, 4) + ".png";
+  String filename = videoPrefix + nf(currentFrame, 2) + ".png";
   videoFrame = loadImage(filename);
   println(currentFrame + " / " + (totalFrames-1));
 }
