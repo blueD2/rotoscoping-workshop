@@ -11,6 +11,7 @@ PImage drawing;
 
 int currentFrame = 17;
 boolean showVideo = true;
+boolean showColor =true;
 
 color brushColor = 0;
 int brushWeight = 4;
@@ -39,12 +40,17 @@ void draw() {
   d.endDraw();
   image(d, 0, 0, width, height);
   
-  image(selector, sx, sy);
+  if(showColor) {
+    image(selector, sx, sy);
+  }
 }
 
 void keyPressed() {
   if (key == ' ' ) {
     showVideo = !showVideo;
+  }
+    if (key == 's' ) {
+    showColor = !showColor;
   }
   if (key == 'b') { brushColor = color(0, 0, 0);  }
   if (key == 'o') { brushColor = color(218, 163, 76);  }
@@ -74,7 +80,7 @@ if (key == CODED) {
       loadFrame();
       loadDrawing();
     } else if (keyCode == SHIFT) {
-      noFill(); stroke(0,255,0); ellipse(mouseX,mouseY,50,50); eraseFunction();
+      noFill(); stroke(0,255,0); ellipse(mouseX,mouseY,25,25); eraseFunction();
     }
   }
 }
