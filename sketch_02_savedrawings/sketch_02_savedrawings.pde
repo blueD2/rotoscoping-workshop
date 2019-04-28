@@ -143,3 +143,5 @@ void eraseFunction() {
 void layerClear() {
   d.clear();
 }
+
+//test #2
