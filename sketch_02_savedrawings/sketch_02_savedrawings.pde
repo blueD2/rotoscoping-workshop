@@ -56,9 +56,9 @@ void keyPressed() {
   if (key == 'v') { brushColor = color(106, 57, 146);  }
   if (key == 'p') { brushColor = color(192, 67, 109);  }
   if (key == 'i') { brushColor = color(61, 85, 146);  }
-  if (key == '[') { brushWeight--;  }
-  if (key == ']') { brushWeight++;  }
-  if (key == 'x') { d.clear() }
+  if (key == '[') { brushWeight--;  println(brushWeight); }
+  if (key == ']') { brushWeight++;  println(brushWeight); }
+  if (key == 'x') { d.clear(); }
   
   if (key == CODED) {
     if (keyCode == LEFT) {  // Left arrow key
