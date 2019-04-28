@@ -59,6 +59,13 @@ void keyPressed() {
   if (key == '[') { brushWeight--;  println(brushWeight); }
   if (key == ']') { brushWeight++;  println(brushWeight); }
   if (key == 'x') { d.clear(); }
+  if (key == 'f') {
+        d.beginDraw();
+        d.loadPixels();
+        fill(0, 0); 
+        d.updatePixels();
+        d.endDraw();
+  }
   
   if (key == CODED) {
     if (keyCode == LEFT) {  // Left arrow key
@@ -130,7 +137,6 @@ boolean overSelector() {
 }
 
 void eraseFunction() {
-  log(1);
   color c = color(0,0);
   d.beginDraw();
   d.loadPixels();
@@ -145,4 +151,16 @@ void eraseFunction() {
   }
   d.updatePixels();
   d.endDraw();
+}
+
+void fill(int x, int y) {
+  if (x < 0 || x >= width || y < 0 || y>= height) { return; }
+  int loc = x + y*d.width;
+  if (d.pixels[loc] == 0) {
+    float r = random(1, 255);
+    color c = color(r, r, r);
+    d.pixels[loc] = c;
+    fill (x+1, y);
+    fill (x, y+1);
+  }
 }
