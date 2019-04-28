@@ -41,7 +41,7 @@ void draw() {
   image(d, 0, 0, width, height);
   
   if(showColor) {
-    image(selector, sx, sy);
+    image(selector, 0, 0);
   }
 }
 
@@ -49,7 +49,7 @@ void keyPressed() {
   if (key == ' ' ) {
     showVideo = !showVideo;
   }
-    if (key == 's' ) {
+  if (key == 's' ) {
     showColor = !showColor;
   }
   if (key == 'b') { brushColor = color(0, 0, 0);  }
@@ -57,9 +57,12 @@ void keyPressed() {
   if (key == 'v') { brushColor = color(106, 57, 146);  }
   if (key == 'p') { brushColor = color(192, 67, 109);  }
   if (key == 'i') { brushColor = color(61, 85, 146);  }
-  if (key == '[') { brushWeight = max(brushWeight - 1, 1);}
-  if (key == ']') { brushWeight++;  }
+  if (key == '[') { brushWeight = max(brushWeight - 1, 1);
+                    println("Decreasing BrushWeight is now: " + brushWeight) ;}
+  if (key == ']') { brushWeight++;  
+                    println("Increasing BrushWeight is now: " + brushWeight) ;}
   if(key == 'x') { layerClear();}
+  if(key == '0') { println("Current brush weight is: " + brushWeight) ;}
   
 if (key == CODED) {
     if (keyCode == LEFT) {  // Left arrow key
@@ -120,6 +123,8 @@ void mousePressed() {
 }
 
 boolean overSelector() {
+  if(!showColor)
+    return false;
   if (mouseX > sx && mouseX < sx+selector.width && 
       mouseY > sy && mouseY < sy+selector.height) {
     return true;
